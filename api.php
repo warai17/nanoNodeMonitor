@@ -18,7 +18,8 @@ $data = $cache->fetch($apiName, function () use (
     &$nanoNumDecimalPlaces,
     &$uptimerobotApiKey,
     &$currency,
-    &$nodeLocation
+    &$nodeLocation,
+    &$nodeDataDir
 ) {
     // get curl handle
     $ch = curl_init();
@@ -148,6 +149,9 @@ $data = $cache->fetch($apiName, function () use (
     $data->systemUptime = $systemUptimeStr;
     $data->usedMem = getSystemUsedMem();
     $data->totalMem = getSystemTotalMem();
+    $diskPath = getDiskPath($nodeDataDir);
+    $data->usedDisk = getSystemUsedDisk($diskPath);
+    $data->totalDisk = getSystemTotalDisk($diskPath);
     $data->nanoNodeName = $nanoNodeName;
     $data->nodeUptimeStartup = (int) (getUptime($ch)->{'seconds'} ?? 0);
 

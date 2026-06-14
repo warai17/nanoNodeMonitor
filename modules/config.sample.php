@@ -46,6 +46,11 @@ $configVersion = 1;
 // If left empty, we try to get it from My Nano Ninja.
 // $nodeLocation = '';
 
+// Path to the node's data directory, used to report disk usage in the System
+// panel. Point this at a path on the volume you want to monitor (e.g. your
+// Hetzner volume mount). If left empty, disk usage is reported for "/".
+// $nodeDataDir = '/mnt/HC_Volume_xxxxxxxx';
+
 // A welcome message shown on top
 // $welcomeMsg = 'Welcome to Nano Node Monitor';
 
