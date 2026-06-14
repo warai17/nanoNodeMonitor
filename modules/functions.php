@@ -88,6 +88,29 @@ function getSystemUsedMem()
     return intval(((int)$meminfo["MemTotal"] - (int)$meminfo["MemAvailable"]) / 1024);
 }
 
+// resolve the path whose filesystem the disk metrics report on:
+// the configured node data dir, falling back to root ("/")
+function getDiskPath($nodeDataDir)
+{
+    return ($nodeDataDir && is_dir($nodeDataDir)) ? $nodeDataDir : "/";
+}
+
+// get total disk space in GB for the filesystem holding $path; 0 when unavailable
+function getSystemTotalDisk($path)
+{
+    $bytes = @disk_total_space($path);
+    return ($bytes !== false) ? intval($bytes / (1024 ** 3)) : 0;
+}
+
+// get used disk space in GB for the filesystem holding $path; 0 when unavailable
+function getSystemUsedDisk($path)
+{
+    $total = @disk_total_space($path);
+    $free  = @disk_free_space($path);
+    if ($total === false || $free === false) return 0;
+    return intval(($total - $free) / (1024 ** 3));
+}
+
 // get system uptime array with secs, mins, hours and days
 // returns zeroed values when /proc/uptime is unavailable (e.g. non-Linux)
 function getSystemUptime()

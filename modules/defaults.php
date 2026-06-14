@@ -38,6 +38,12 @@ $nanoNodeName = gethostname();
 // Location of your node
 $nodeLocation = NULL;
 
+// Path to the node's data directory, used to report disk usage in the System
+// panel. Point this at a path on the volume you want to monitor (e.g. your
+// Hetzner volume mount). When NULL, disk usage is reported for the root ("/")
+// filesystem instead.
+$nodeDataDir = NULL;
+
 // A welcome message shown on top
 $welcomeMsg = '';
 

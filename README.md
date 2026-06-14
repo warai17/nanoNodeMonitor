@@ -128,6 +128,11 @@ $nanoNodeRPCIP   = '127.0.0.1';
 $nanoNodeRPCPort = '7076';
 ```
 
+The System panel reports disk usage for the filesystem holding your node's data
+directory. Set `$nodeDataDir` in `config.php` to a path on the volume you want to
+monitor (for example a mounted Hetzner volume); if it is left unset, usage is
+reported for the root (`/`) filesystem.
+
 ## Creating a Theme
 
 If you're interested in creating your own theme in addition to the official Light,  Dark, and Banano themes, we've made it very simple for you to do so. Check out the [Wiki](https://github.com/GigaionLLC/nanoNodeMonitor/wiki/Create-a-theme) for more info.
